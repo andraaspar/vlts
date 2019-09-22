@@ -5,4 +5,4 @@ import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<AppComp />, document.getElementById('root'))
 
-serviceWorker.unregister()
+serviceWorker.register()
