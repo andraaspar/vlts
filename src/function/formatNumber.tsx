@@ -1,5 +1,11 @@
-const numberFormat = new Intl.NumberFormat('hu', {})
+import numbro from 'numbro'
+import huHu from 'numbro/dist/languages/hu-HU.min.js'
+
+numbro.registerLanguage(huHu)
+numbro.setLanguage('hu-HU')
 
 export function formatNumber(n: number): string {
-	return numberFormat.format(n)
+	return numbro(n).format({
+		thousandSeparated: true,
+	})
 }
