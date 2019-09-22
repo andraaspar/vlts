@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react'
-import { formatNumber } from '../function/formatNumber'
-import { makeTrailQuestion } from '../function/makeTrailQuestion'
-import { trailWrappers } from '../model/trailWrappers'
+import React, { useCallback, useState } from 'react';
+import { formatNumber } from '../function/formatNumber';
+import { makeTrailQuestion } from '../function/makeTrailQuestion';
+import { trailWrappers } from '../model/trailWrappers';
 
 const trailIndexKey = 'trailIndex'
 
@@ -45,7 +45,7 @@ export function AppComp() {
 				}
 			}}
 		>
-			<div>
+			<p>
 				{trailWrappers.map((trailWrapper, index) => (
 					<label key={index}>
 						<input
@@ -54,25 +54,22 @@ export function AppComp() {
 							value={index + ''}
 							checked={$trailIndex === index}
 							onChange={radioChanged}
-						/>{' '}
+						/>{'\u00a0'}
 						{trailWrapper.name}{' '}
 					</label>
 				))}
-			</div>
-			<div>{$index + 1}.</div>
-			<table>
-				<tbody>
-					{$question.questionParts.map(([stop, value], index) => (
-						<tr key={index}>
-							<td style={{ textAlign: 'right' }}>
-								{formatNumber(value)}
-							</td>
-							<td>{stop.name}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-			<div>
+			</p>
+			<p>
+				<small>{$index + 1}.</small>
+			</p>
+			{$question.questionParts.map(([stop, value], index) => (
+				<p key={index}>
+					<strong>
+						{formatNumber(value)} {stop.name}
+					</strong>
+				</p>
+			))}
+			<p>
 				<input
 					type='number'
 					style={{ textAlign: 'right' }}
@@ -81,11 +78,8 @@ export function AppComp() {
 						set$value(e.target.value)
 					}}
 				/>{' '}
-				{$question.answerLabel}
-			</div>
-			<div>
-				<button>OK</button>
-			</div>
+				{$question.answerLabel} <button>OK</button>
+			</p>
 		</form>
 	)
 }
