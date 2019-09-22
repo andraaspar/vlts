@@ -5,7 +5,7 @@ import { pickRandomElement } from './pickRandomElement'
 import { pickRandomElements } from './pickRandomElements'
 import { pickRandomNumber } from './pickRandomNumber'
 
-export function makeTrailQuestion(trail: Trail, mayOverlap: boolean): Question {
+export function makeTrailQuestion(trail: Trail): Question {
 	const count = 2
 	const stops = pickRandomElements(count, trail)
 	const [answerStop, questionStops] = pickRandomElement(stops)
@@ -23,7 +23,7 @@ export function makeTrailQuestion(trail: Trail, mayOverlap: boolean): Question {
 				(largest, stop) => Math.max(largest, stop.multiplier),
 				1,
 			),
-		) * 100
+		) * 1000
 	const answerBeforeTrick =
 		(Math.floor(pickRandomNumber(answerStep, answerMax) / answerStep) *
 			answerStep) /
@@ -37,7 +37,7 @@ export function makeTrailQuestion(trail: Trail, mayOverlap: boolean): Question {
 	const questionValues = distributeValue(
 		answer * answerStop.multiplier,
 		questionStops,
-		mayOverlap,
+		false,
 	)
 	const questionParts = Array.from(questionValues.entries()).filter(
 		([, value]) => value > 0,
